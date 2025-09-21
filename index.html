@@ -256,6 +256,9 @@
 
   <div class="cart" id="cart">
     <h2>السلة</h2>
+    <div class="checkout-global">
+      <button onclick="checkout()">إرسال الطلب</button>
+    </div>
     <div class="cart-items" id="cart-items"></div>
   </div>
   <div class="cart-toggle" onclick="toggleCart()">🛒</div>
@@ -266,74 +269,74 @@
 
     const menuData = [
       // عروض (Offers)
-      { id: 1, category: 'عروض', name: 'عرض الأوسط', description: '', price: 65, image: 'https://via.placeholder.com/300x150/ff5722/fff?text=Offer' },
-      { id: 2, category: 'عروض', name: 'عرض الكبير', description: '', price: 99, image: 'https://via.placeholder.com/300x150/ff5722/fff?text=Offer' },
-      { id: 3, category: 'عروض', name: 'عرض العائلي', description: '', price: 139, image: 'https://via.placeholder.com/300x150/ff5722/fff?text=Offer' },
+      { id: 1, category: 'عروض', name: 'عرض الأوسط', description: '', price: 65, image: '36.jpg' },
+      { id: 2, category: 'عروض', name: 'عرض الكبير', description: '', price: 99, image: '37.jpg' },
+      { id: 3, category: 'عروض', name: 'عرض العائلي', description: '', price: 139, image: '38.jpg' },
       // باستا (Pasta)
-      { id: 4, category: 'باستا', name: 'بيستو باستا', description: '', price: 30, image: 'https://via.placeholder.com/300x150/8a2be2/fff?text=Pesto+Pasta' },
-      { id: 5, category: 'باستا', name: 'فيتوتشيني باستا', description: '', price: 25, image: 'https://via.placeholder.com/300x150/8a2be2/fff?text=Fettuccine+Pasta' },
-      { id: 6, category: 'باستا', name: 'لازانيا', description: '', price: 27, image: 'https://via.placeholder.com/300x150/8a2be2/fff?text=Lasagna' },
-      { id: 7, category: 'باستا', name: 'ميكسكان بنا', description: '', price: 25, image: 'https://via.placeholder.com/300x150/8a2be2/fff?text=Mexicana+Pasta' },
+      { id: 4, category: 'باستا', name: 'بيستو باستا', description: '', price: 30, image: 'bestobasta.jpg' },
+      { id: 5, category: 'باستا', name: 'فيتوتشيني باستا', description: '', price: 25, image: 'fotytshenebasta.jpg' },
+      { id: 6, category: 'باستا', name: 'لازانيا', description: '', price: 27, image: 'lazanya.jpg' },
+      { id: 7, category: 'باستا', name: 'ميكسكان بنا', description: '', price: 25, image: 'maxicanbana.jpg' },
       // جوانب (Sides)
-      { id: 8, category: 'جوانب', name: 'بطاطس بالجبنة', description: '', price: 15, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Cheese+Fries' },
-      { id: 9, category: 'جوانب', name: 'بطاطس ويدجز', description: '', price: 10, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Wedges' },
-      { id: 10, category: 'جوانب', name: 'واو فرايز دجاج', description: '', price: 26, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Wow+Fries+Chicken' },
-      { id: 11, category: 'جوانب', name: 'واو فرايز جمبري', description: '', price: 30, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Wow+Fries+Shrimp' },
-      { id: 12, category: 'جوانب', name: 'حلقات بصل', description: '', price: 10, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Onion+Rings' },
-      { id: 13, category: 'جوانب', name: 'كيرلي فرايز', description: '', price: 9, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Curly+Fries' },
-      { id: 14, category: 'جوانب', name: 'بطاطس', description: '', price: 8, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=French+Fries' },
-      { id: 15, category: 'جوانب', name: 'سلطة سيزر', description: '', price: 14, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Caesar+Salad' },
-      { id: 16, category: 'جوانب', name: 'سلطة خضراء', description: '', price: 12, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Green+Salad' },
-      { id: 17, category: 'جوانب', name: 'أصابع موزاريلا', description: '', price: 13, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Mozzarella+Sticks' },
-      { id: 18, category: 'جوانب', name: '4 أجنحة دجاج', description: '', price: 14, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Chicken+Wings' },
-      { id: 19, category: 'جوانب', name: '8 أجنحة دجاج', description: '', price: 27, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Chicken+Wings' },
-      { id: 20, category: 'جوانب', name: 'كوكيز', description: '', price: 6, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Cookies' },
+      { id: 8, category: 'جوانب', name: 'بطاطس بالجبنة', description: '', price: 15, image: 'chessfrise.jpg' },
+      { id: 9, category: 'جوانب', name: 'بطاطس ويدجز', description: '', price: 10, image: 'wedges.jpg' },
+      { id: 10, category: 'جوانب', name: 'واو فرايز دجاج', description: '', price: 26, image: 'wowfrise.jpg' },
+      { id: 11, category: 'جوانب', name: 'واو فرايز جمبري', description: '', price: 30, image: 'wowfrise.jpg' },
+      { id: 12, category: 'جوانب', name: 'حلقات بصل', description: '', price: 10, image: 'circleonion.jpg' },
+      { id: 13, category: 'جوانب', name: 'كيرلي فرايز', description: '', price: 9, image: 'kerle.jpg' },
+      { id: 14, category: 'جوانب', name: 'بطاطس', description: '', price: 8, image: 'frise.jpg' },
+      { id: 15, category: 'جوانب', name: 'سلطة سيزر', description: '', price: 14, image: 'salath.jpg' },
+      { id: 16, category: 'جوانب', name: 'سلطة خضراء', description: '', price: 12, image: 'salath.jpg' },
+      { id: 17, category: 'جوانب', name: 'أصابع موزاريلا', description: '', price: 13, image: 'mozorela.jpg' },
+      { id: 18, category: 'جوانب', name: '4 أجنحة دجاج', description: '', price: 14, image: 'ckicenwings.jpg' },
+      { id: 19, category: 'جوانب', name: '8 أجنحة دجاج', description: '', price: 27, image: 'ckicenwings.jpg' },
+      { id: 20, category: 'جوانب', name: 'كوكيز', description: '', price: 6, image: 'cokies.jpg' },
       // دجاج TCB
-      { id: 21, category: 'دجاج TCB', name: 'صدور دجاج تي سي بي دايناميت جبن', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=Dynamite+Chicken' },
-      { id: 22, category: 'دجاج TCB', name: 'أصابع دجاج تي سي بي دايناميت جبن', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=Dynamite+Tender' },
-      { id: 23, category: 'دجاج TCB', name: 'دايناميت تي سي بي صدور دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=Dynamite+Chicken' },
-      { id: 24, category: 'دجاج TCB', name: 'دايناميت تي سي بي أصابع دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=Dynamite+Tender' },
-      { id: 25, category: 'دجاج TCB', name: 'فرنسي تي سي بي صدور دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=French+Chicken' },
-      { id: 26, category: 'دجاج TCB', name: 'فرنسي تي سي بي أصابع دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=French+Tender' },
-      { id: 27, category: 'دجاج TCB', name: 'رانش تي سي بي أصابع دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=Ranch+Tender' },
-      { id: 28, category: 'دجاج TCB', name: 'رانش تي سي بي صدور دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=Ranch+Chicken' },
-      { id: 29, category: 'دجاج TCB', name: 'تي سي بي باربكيو صدور دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=BBQ+Chicken' },
-      { id: 30, category: 'دجاج TCB', name: 'تي سي بي باربكيو أصابع دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'https://via.placeholder.com/300x150/ff0000/fff?text=BBQ+Tender' },
+      { id: 21, category: 'دجاج TCB', name: 'صدور دجاج تي سي بي دايناميت جبن', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbdenametchees.jpg' },
+      { id: 22, category: 'دجاج TCB', name: 'أصابع دجاج تي سي بي دايناميت جبن', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbdenametchees.jpg' },
+      { id: 23, category: 'دجاج TCB', name: 'دايناميت تي سي بي صدور دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbdenamet.jpg' },
+      { id: 24, category: 'دجاج TCB', name: 'دايناميت تي سي بي أصابع دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbdenamet.jpg' },
+      { id: 25, category: 'دجاج TCB', name: 'فرنسي تي سي بي صدور دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbfreanch.jpg' },
+      { id: 26, category: 'دجاج TCB', name: 'فرنسي تي سي بي أصابع دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbfreanch.jpg' },
+      { id: 27, category: 'دجاج TCB', name: 'رانش تي سي بي أصابع دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbranch.jpg' },
+      { id: 28, category: 'دجاج TCB', name: 'رانش تي سي بي صدور دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbranch.jpg' },
+      { id: 29, category: 'دجاج TCB', name: 'تي سي بي باربكيو صدور دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbbbq.jpg' },
+      { id: 30, category: 'دجاج TCB', name: 'تي سي بي باربكيو أصابع دجاج', description: '', sizes: [{name: 'عادي', price: 16}, {name: 'دبل', price: 22}], image: 'tcbbbq.jpg' },
       // بيتزا (Pizza)
-      { id: 31, category: 'بيتزا', name: 'ساموكي', description: 'دجاج مشوي + صلصة سموكي + فلفل اخضر + فلفل اصفر + جبنة تترا', sizes: [{name: 'S', price: 23}, {name: 'M', price: 35}, {name: 'L', price: 41}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Samoky+Pizza' },
-      { id: 32, category: 'بيتزا', name: 'تكا بيتزا', description: 'دجاج التكا المشوي + صوص التكا + الفلفل الأخضر + البصل + جبنة تترا', sizes: [{name: 'S', price: 21}, {name: 'M', price: 33}, {name: 'L', price: 43}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Tikka+Pizza' },
-      { id: 33, category: 'بيتزا', name: 'بيري بيري', description: 'دجاج تترا المشوي + صوص البري بيري الحار + بصل + فلفل احمر + جبنة تترا', sizes: [{name: 'S', price: 21}, {name: 'M', price: 33}, {name: 'L', price: 43}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Peri+Peri+Pizza' },
-      { id: 34, category: 'بيتزا', name: 'رانش فاير', description: 'دجاج الرانش + صلصة الرانش الحارة + جبنة تترا', sizes: [{name: 'S', price: 21}, {name: 'M', price: 33}, {name: 'L', price: 43}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Ranch+Fire' },
-      { id: 35, category: 'بيتزا', name: 'ميكسيكان سبايسي', description: 'دجاج تترا المشوي + صلصة تترا الحارة + فلفل اخضر + هلابينو + بصل + جبنة تترا + طماطم', sizes: [{name: 'S', price: 18}, {name: 'M', price: 30}, {name: 'L', price: 40}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Mexican+Spicy' },
-      { id: 36, category: 'بيتزا', name: 'فاهيتا دجاج', description: 'دجاج فاهيتا + صلصة تترا الخاصة + فلفل اخضر + مشروم + بصل + جبنة تترا', sizes: [{name: 'S', price: 18}, {name: 'M', price: 30}, {name: 'L', price: 40}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Fajita+Chicken' },
-      { id: 37, category: 'بيتزا', name: 'شاورما', description: 'صلصة شاورما + جبنة تترا + دجاج شاورما تترا + فلفل احمر + مخلل', sizes: [{name: 'S', price: 19}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Shawarma+Pizza' },
-      { id: 38, category: 'بيتزا', name: 'رانش تشيكن', description: 'دجاج الرانش + صلصة الرانش + جبنة تترا', sizes: [{name: 'S', price: 20}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Ranch+Chicken+Pizza' },
-      { id: 39, category: 'بيتزا', name: 'تترا كوين', description: 'قطع دجاج + صلصة تترا الخاصة + جبنة تترا', sizes: [{name: 'S', price: 21}, {name: 'M', price: 32}, {name: 'L', price: 43}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Tetra+Queen' },
-      { id: 40, category: 'بيتزا', name: 'اكسترا سوبريم', description: 'صلصة تترا + جبنة تترا + زيتون اسود + فلفل اخضر + مشروم + قطع لحم + بصل + ببروني', sizes: [{name: 'S', price: 21}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Extra+Supreme' },
-      { id: 41, category: 'بيتزا', name: 'فرنش بيتزا', description: 'دجاج مشوي + صلصة فرانسية خاصة + فلفل احمر + بصل + زيتون اسود + مشروم + جبنة تترا', sizes: [{name: 'S', price: 19}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=French+Pizza' },
-      { id: 42, category: 'بيتزا', name: 'خضار', description: 'صلصة تترا + فلفل اخضر + فلفل اصفر + بصل + زيتون اسود + مشروم + طماطم + جبنة تترا', sizes: [{name: 'S', price: 16}, {name: 'M', price: 28}, {name: 'L', price: 28}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Vegetable+Pizza' },
-      { id: 43, category: 'بيتزا', name: 'باربكيو دجاج', description: 'دجاج مشوي + صلصة الباربكيو + فلفل اخضر + فلفل اصفر + بصل + مشروم + جبنة تترا', sizes: [{name: 'S', price: 18}, {name: 'M', price: 30}, {name: 'L', price: 40}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=BBQ+Chicken+Pizza' },
-      { id: 44, category: 'بيتزا', name: 'مارغريتا', description: 'مكس اجبان تترا + صلصة تترا الخاصة', sizes: [{name: 'S', price: 16}, {name: 'M', price: 28}, {name: 'L', price: 38}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Margherita+Pizza' },
-      { id: 45, category: 'بيتزا', name: 'داينمايت دجاج', description: 'ديناميت صوص + جبنة تترا + دجاج', sizes: [{name: 'S', price: 19}, {name: 'M', price: 29}, {name: 'L', price: 39}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Dynamite+Chicken+Pizza' },
-      { id: 46, category: 'بيتزا', name: 'داينمايت جمبري', description: 'ديناميت صوص + جبنة تترا + جمبري', sizes: [{name: 'S', price: 23}, {name: 'M', price: 35}, {name: 'L', price: 45}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Dynamite+Shrimp+Pizza' },
-      { id: 47, category: 'بيتزا', name: 'بيبروني', description: 'صلصة تترا + ببروني + جبنة تترا', sizes: [{name: 'S', price: 19}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'https://via.placeholder.com/300x150/e64a19/fff?text=Pepperoni+Pizza' },
+      { id: 31, category: 'بيتزا', name: 'سموكي', description: 'دجاج مشوي + صلصة سموكي + فلفل اخضر + فلفل اصفر + جبنة تترا', sizes: [{name: 'S', price: 23}, {name: 'M', price: 35}, {name: 'L', price: 41}], image: 'smokepizza.png' },
+      { id: 32, category: 'بيتزا', name: 'تكا بيتزا', description: 'دجاج التكا المشوي + صوص التكا + الفلفل الأخضر + البصل + جبنة تترا', sizes: [{name: 'S', price: 21}, {name: 'M', price: 33}, {name: 'L', price: 43}], image: 'takapezz.jpg' },
+      { id: 33, category: 'بيتزا', name: 'بيري بيري', description: 'دجاج تترا المشوي + صوص البري بيري الحار + بصل + فلفل احمر + جبنة تترا', sizes: [{name: 'S', price: 21}, {name: 'M', price: 33}, {name: 'L', price: 43}], image: 'berebere.jpg' },
+      { id: 34, category: 'بيتزا', name: 'رانش فاير', description: 'دجاج الرانش + صلصة الرانش الحارة + جبنة تترا', sizes: [{name: 'S', price: 21}, {name: 'M', price: 33}, {name: 'L', price: 43}], image: 'ranchfire.jpg' },
+      { id: 35, category: 'بيتزا', name: 'ميكسيكان سبايسي', description: 'دجاج تترا المشوي + صلصة تترا الحارة + فلفل اخضر + هلابينو + بصل + جبنة تترا + طماطم', sizes: [{name: 'S', price: 18}, {name: 'M', price: 30}, {name: 'L', price: 40}], image: 'maxicanspyce.jpg' },
+      { id: 36, category: 'بيتزا', name: 'فاهيتا دجاج', description: 'دجاج فاهيتا + صلصة تترا الخاصة + فلفل اخضر + مشروم + بصل + جبنة تترا', sizes: [{name: 'S', price: 18}, {name: 'M', price: 30}, {name: 'L', price: 40}], image: 'faheta.jpg' },
+      { id: 37, category: 'بيتزا', name: 'شاورما', description: 'صلصة شاورما + جبنة تترا + دجاج شاورما تترا + فلفل احمر + مخلل', sizes: [{name: 'S', price: 19}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'shawerma.jpg' },
+      { id: 38, category: 'بيتزا', name: 'رانش تشيكن', description: 'دجاج الرانش + صلصة الرانش + جبنة تترا', sizes: [{name: 'S', price: 20}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'ranchchecken.jpg' },
+      { id: 39, category: 'بيتزا', name: 'تترا كوين', description: 'قطع دجاج + صلصة تترا الخاصة + جبنة تترا', sizes: [{name: 'S', price: 21}, {name: 'M', price: 32}, {name: 'L', price: 43}], image: 'tetraqueen.jpg' },
+      { id: 40, category: 'بيتزا', name: 'اكسترا سوبريم', description: 'صلصة تترا + جبنة تترا + زيتون اسود + فلفل اخضر + مشروم + قطع لحم + بصل + ببروني', sizes: [{name: 'S', price: 21}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'exstrasuperreem.jpg' },
+      { id: 41, category: 'بيتزا', name: 'فرنش بيتزا', description: 'دجاج مشوي + صلصة فرانسية خاصة + فلفل احمر + بصل + زيتون اسود + مشروم + جبنة تترا', sizes: [{name: 'S', price: 19}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'freanch.jpg' },
+      { id: 42, category: 'بيتزا', name: 'خضار', description: 'صلصة تترا + فلفل اخضر + فلفل اصفر + بصل + زيتون اسود + مشروم + طماطم + جبنة تترا', sizes: [{name: 'S', price: 16}, {name: 'M', price: 28}, {name: 'L', price: 28}], image: 'vegtabols.jpg' },
+      { id: 43, category: 'بيتزا', name: 'باربكيو دجاج', description: 'دجاج مشوي + صلصة الباربكيو + فلفل اخضر + فلفل اصفر + بصل + مشروم + جبنة تترا', sizes: [{name: 'S', price: 18}, {name: 'M', price: 30}, {name: 'L', price: 40}], image: 'bbq.jpg' },
+      { id: 44, category: 'بيتزا', name: 'مارغريتا', description: 'مكس اجبان تترا + صلصة تترا الخاصة', sizes: [{name: 'S', price: 16}, {name: 'M', price: 28}, {name: 'L', price: 38}], image: 'margareta.jpg' },
+      { id: 45, category: 'بيتزا', name: 'داينمايت دجاج', description: 'ديناميت صوص + جبنة تترا + دجاج', sizes: [{name: 'S', price: 19}, {name: 'M', price: 29}, {name: 'L', price: 39}], image: 'dynamitt.jpg' },
+      { id: 46, category: 'بيتزا', name: 'داينمايت جمبري', description: 'ديناميت صوص + جبنة تترا + جمبري', sizes: [{name: 'S', price: 23}, {name: 'M', price: 35}, {name: 'L', price: 45}], image: 'dynamitt.jpg' },
+      { id: 47, category: 'بيتزا', name: 'بيبروني', description: 'صلصة تترا + ببروني + جبنة تترا', sizes: [{name: 'S', price: 19}, {name: 'M', price: 31}, {name: 'L', price: 41}], image: 'babrone.jpg' },
       // صوصات (Sauces)
-      { id: 48, category: 'صوصات', name: 'صوص داينمايت', description: '', price: 2, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Sauce' },
-      { id: 49, category: 'صوصات', name: 'صوص جبنة', description: '', price: 4, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Sauce' },
-      { id: 50, category: 'صوصات', name: 'صوص فرنش', description: '', price: 2, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Sauce' },
-      { id: 51, category: 'صوصات', name: 'صوص رانش', description: '', price: 2, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Sauce' },
-      { id: 52, category: 'صوصات', name: 'صوص ثوم', description: '', price: 2, image: 'https://via.placeholder.com/300x150/4a4a4a/fff?text=Sauce' },
+      { id: 48, category: 'صوصات', name: 'صوص داينمايت', description: '', price: 2, image: 'suse4.png' },
+      { id: 49, category: 'صوصات', name: 'صوص جبنة', description: '', price: 4, image: 'suse2.png' },
+      { id: 50, category: 'صوصات', name: 'صوص فرنش', description: '', price: 2, image: 'suse3.png' },
+      { id: 51, category: 'صوصات', name: 'صوص رانش', description: '', price: 2, image: 'suse1.png' },
+      { id: 52, category: 'صوصات', name: 'صوص ثوم', description: '', price: 2, image: 'suse1.png' },
       // وجبة أطفال (Kids Meal)
-      { id: 53, category: 'وجبة أطفال', name: 'وجبة أطفال جبن', description: '', price: 15, image: 'https://via.placeholder.com/300x150/f44336/fff?text=Kids+Meal' },
-      { id: 54, category: 'وجبة أطفال', name: 'وجبة أطفال خضار', description: '', price: 15, image: 'https://via.placeholder.com/300x150/f44336/fff?text=Kids+Meal' },
-      { id: 55, category: 'وجبة أطفال', name: 'وجبة أطفال ببروني', description: '', price: 15, image: 'https://via.placeholder.com/300x150/f44336/fff?text=Kids+Meal' },
+      { id: 53, category: 'وجبة أطفال', name: 'وجبة أطفال جبن', description: '', price: 15, image: 'happymeal.jpg' },
+      { id: 54, category: 'وجبة أطفال', name: 'وجبة أطفال خضار', description: '', price: 15, image: 'happymeal.jpg' },
+      { id: 55, category: 'وجبة أطفال', name: 'وجبة أطفال ببروني', description: '', price: 15, image: 'happymeal.jpg' },
       // مشروبات (Drinks)
-      { id: 56, category: 'مشروبات', name: 'ماء', description: '', price: 2, image: 'https://via.placeholder.com/300x150/2196F3/fff?text=Water' },
-      { id: 57, category: 'مشروبات', name: 'كولا', description: '1 لتر', price: 8, image: 'https://via.placeholder.com/300x150/2196F3/fff?text=Cola' },
-      { id: 58, category: 'مشروبات', name: 'كولا', description: '2.25 لتر', price: 12, image: 'https://via.placeholder.com/300x150/2196F3/fff?text=Cola' },
-      { id: 59, category: 'مشروبات', name: 'كولا', description: 'علبة', price: 4, image: 'https://via.placeholder.com/300x150/2196F3/fff?text=Cola' },
-      { id: 60, category: 'مشروبات', name: 'سيزر', description: 'علبة', price: 4, image: 'https://via.placeholder.com/300x150/2196F3/fff?text=Caeser' },
-      { id: 61, category: 'مشروبات', name: 'ربيع', description: 'علبة', price: 3, image: 'https://via.placeholder.com/300x150/2196F3/fff?text=Rabie' }
+      { id: 56, category: 'مشروبات', name: 'ماء', description: '', price: 2, image: 'water.jpg' },
+      { id: 57, category: 'مشروبات', name: 'كولا', description: '1 لتر', price: 8, image: 'colaleter.jpg' },
+      { id: 58, category: 'مشروبات', name: 'كولا', description: '2.25 لتر', price: 12, image: 'colafamily.jpg' },
+      { id: 59, category: 'مشروبات', name: 'كولا', description: 'علبة', price: 4, image: 'cola.jpg' },
+      { id: 60, category: 'مشروبات', name: 'سيزر', description: 'علبة', price: 4, image: 'ceaser.jpg' },
+      { id: 61, category: 'مشروبات', name: 'ربيع', description: 'علبة', price: 3, image: 'rabea.jpg' }
     ];
 
     const menuContainer = document.getElementById("menu");
